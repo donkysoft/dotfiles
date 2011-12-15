@@ -1,8 +1,22 @@
+set nocompatible			" Vi互換をオフ
+filetype off
+
+set rtp+=~/vimfiles/vundle.git/
+call vundle#rc()
+Bundle 'Shouge/neocomplcache'
+Bundle 'Shougo/unite.vim'
+Bundle 'thinca/vim-ref'
+Bundle 'thinca/vim-quickrun'
+
+filetype plugin indent on	" pluginをonにする
+
+
+
 "set cindent				" C言語用のインデントを有効にする
 syntax on					" シンタックスonにする
 set backupdir=~/vimbackup	" バックアップファイルを作るディレクトリ
 set browsedir=buffer 		" ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
-set nocompatible			" Vi互換をオフ
+
 set hidden					" 変更中のファイルでも、保存しないで他のファイルを表示
 set incsearch				" インクリメンタルサーチを行う
 "set list					" タブ文字、行末など不可視文字を表示する
@@ -14,7 +28,6 @@ set tabstop=4				" ファイル内の <Tab> が対応する空白の数
 "set whichwrap=b,s,h,l,<,>,[,]	" カーソルを行頭、行末で止まらないようにする（これ、なんだべ？）
 set backspace=2				" バックスペース
 set wildmode=longest,list,full	" wildmode
-filetype plugin indent on	" pluginをonにする
 
 
 """"" Ctrl+p でそのまま実行
@@ -38,10 +51,6 @@ nnoremap k gk
 
 """"" Escの2回押しで検索ハイライト消去
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
-
-
-""""" pathogen.vim関連
-call pathogen#runtime_append_all_bundles()
 
 
 """"" neocomplcache.vim関連
