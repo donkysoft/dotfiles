@@ -9,7 +9,7 @@ else
   call vundle#rc()
 endif
 
-Bundle 'Shouge/neocomplcache'
+Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
