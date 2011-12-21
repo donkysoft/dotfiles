@@ -14,6 +14,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
+Bundle 'mattn/zencoding-vim'
 
 filetype plugin indent on	" pluginをonにする
 
