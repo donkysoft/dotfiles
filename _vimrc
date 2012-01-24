@@ -34,6 +34,7 @@ set smartindent				" 新しい行を作ったときに高度な自動インデ�
 set smarttab				" 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
 set tabstop=4				" ファイル内の <Tab> が対応する空白の数
 "set whichwrap=b,s,h,l,<,>,[,]	" カーソルを行頭、行末で止まらないようにする（これ、なんだべ？）
+set scrolloff=5				" スクロール上下猶予行数
 set backspace=2				" バックスペース
 set wildmode=longest,list,full	" wildmode
 
@@ -45,11 +46,13 @@ function! s:Exec()
 command! Exec call <SID>Exec()
 map <silent> <C-P> :call <SID>Exec()<CR>
 
+""""" バッファを閉じる時にウインドウ分割を保持する
+:com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn 
 
 """"" バッファ移動
 map <F2> <ESC>:bp<CR>
 map <F3> <ESC>:bn<CR>
-map <F4> <ESC>:bw<CR>
+map <F4> <ESC>:Kwbd<CR>
 
 
 """"" 表示行単位で行移動するようにする
