@@ -22,7 +22,8 @@ filetype plugin indent on	" pluginをonにする
 
 "set cindent				" C言語用のインデントを有効にする
 syntax on					" シンタックスonにする
-set backupdir=~/vimbackup	" バックアップファイルを作るディレクトリ
+set backupdir=~/vimbackup	" バックアップファイル用ディレクトリ
+let &directory = &backupdir	" swapファイル用ディレクトリ
 set browsedir=buffer 		" ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
 
 set hidden					" 変更中のファイルでも、保存しないで他のファイルを表示
