@@ -15,6 +15,7 @@ Bundle 'Shougo/vimfiler'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mattn/zencoding-vim'
+Bundle 'sudo.vim'
 
 filetype plugin indent on	" pluginをonにする
 
@@ -73,12 +74,12 @@ let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
 """"" unite.vim関連
 " 入力モードで開始する
 let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <C-B> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
+"" バッファ一覧
+"noremap <C-B> :Unite buffer<CR>
+"" ファイル一覧
+"noremap <C-N> :Unite -buffer-name=file file<CR>
+"" 最近使ったファイルの一覧
+"noremap <C-Z> :Unite file_mru<CR>
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
@@ -120,3 +121,10 @@ let g:buftabs_active_highlight_group="Visual"
 set statusline=%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
 " ステータスラインを常に表示
 set laststatus=2
+
+
+""""" python
+autocmd FileType python setlocal autoindent
+autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
