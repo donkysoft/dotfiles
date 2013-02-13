@@ -108,7 +108,7 @@ NeoBundle 'https://github.com/ujihisa/neco-look.git'
 " ctags で生成した各種宣言を表示 :Tlist
 " taglist Macの /usr/bin/ctags は消すこと
 NeoBundle 'taglist.vim'
-set tags=.tags;
+set tags=tags;
 
 
 " HTMLやXMLなどの賢い展開
