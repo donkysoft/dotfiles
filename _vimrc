@@ -73,8 +73,8 @@ nnoremap <silent> ,vp :VimShellPop<CR>
 "inoremap << <><LEFT>
 "inoremap {% {%<Space><Space>%}<LEFT><LEFT><LEFT>
 
-" template
-autocmd BufNewFile *.py 0r $HOME/dotfiles/vimfiles/templates.py
+"" template
+"autocmd BufNewFile *.py 0r $HOME/dotfiles/vimfiles/templates.py
 
 
 " coffeescript
@@ -113,7 +113,7 @@ set tags=tags;
 
 " HTMLやXMLなどの賢い展開
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
-let g:user_zen_expandabbr_key = '<c-e>'
+"let g:user_zen_expandabbr_key = '<c-e>'
 
 
 " NERDCommenter トグルでコメント/コメントアウト
@@ -129,38 +129,38 @@ NeoBundle 'git://github.com/rgarver/Kwbd.vim.git'
 " =================================================
 " Syntax
 " =================================================
-" haml Sassのインデント、色付け
-NeoBundle 'git://github.com/tpope/vim-haml.git'
+"" haml Sassのインデント、色付け
+"NeoBundle 'git://github.com/tpope/vim-haml.git'
 
-" jade
-NeoBundle 'jade.vim'
+"" jade
+"NeoBundle 'jade.vim'
 
-" Markdown
-NeoBundle 'git://github.com/tpope/vim-markdown.git'
+"" Markdown
+"NeoBundle 'git://github.com/tpope/vim-markdown.git'
 
-" Python
-NeoBundle 'mitechie/pyflakes-pathogen'
+"" Python
+"NeoBundle 'mitechie/pyflakes-pathogen'
 
-" nginxのsyntax
-NeoBundle 'nginx.vim'
-au BufRead,BufNewFile /etc/nginx/* set ft=nginx
+"" nginxのsyntax
+"NeoBundle 'nginx.vim'
+"au BufRead,BufNewFile /etc/nginx/* set ft=nginx
 
-" JSON
-NeoBundle 'JSON.vim'
-au! BufRead,BufNewFile *.json set filetype=json
+"" JSON
+"NeoBundle 'JSON.vim'
+"au! BufRead,BufNewFile *.json set filetype=json
 
-" blockdiag
-NeoBundle 'git://github.com/aohta/blockdiag.vim.git'
+"" blockdiag
+"NeoBundle 'git://github.com/aohta/blockdiag.vim.git'
 
-" 各種構文チェックしてくれるらしい
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+"" 各種構文チェックしてくれるらしい
+"NeoBundle 'git://github.com/scrooloose/syntastic.git'
 
-" python は pyflakes
-" javascript は jshint
-" html は HTML Tidy
-let g:syntastic_mode_map = { 'mode': 'passive',
-                           \ 'active_filetypes': ['php', 'python', 'javascript', 'html'],
-                           \ 'passive_filetypes': [] }
+"" python は pyflakes
+"" javascript は jshint
+"" html は HTML Tidy
+"let g:syntastic_mode_map = { 'mode': 'passive',
+"                           \ 'active_filetypes': ['php', 'python', 'javascript', 'html'],
+"                           \ 'passive_filetypes': [] }
 " =================================================
 " Filer、参照
 " =================================================
@@ -203,19 +203,15 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 
-" minibufexpl
-NeoBundle 'fholgado/minibufexpl.vim'
-
-
-" Ack.vim
-" Macの場合 brew install ack
-" Ubuntuの場合 sudo apt-get install ack-grep
-" :Ack patterns
-NeoBundle 'https://github.com/mileszs/ack.vim'
-" for Debian/Ubuntu
-if OSTYPE == "Linux\n"
-  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-endif
+"" Ack.vim
+"" Macの場合 brew install ack
+"" Ubuntuの場合 sudo apt-get install ack-grep
+"" :Ack patterns
+"NeoBundle 'https://github.com/mileszs/ack.vim'
+"" for Debian/Ubuntu
+"if OSTYPE == "Linux\n"
+"  let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+"endif
 " =================================================
 " その他
 " =================================================
@@ -298,6 +294,8 @@ set smarttab
 "set nowrapscan
 " 検索のハイライト
 set hlsearch
+" 自動改行しない
+set formatoptions=q
 
 " ハイライトをEscで抜ける
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
@@ -310,10 +308,10 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " Tabでウィンドウの移動
 nnoremap <silent><Tab> <C-w>w
 
-" >や<で幅調節
-nnoremap <silent>> <C-w>>
-nnoremap <silent>< <C-w><
-"
+"" >や<で幅調節
+"nnoremap <silent>> <C-w>>
+"nnoremap <silent>< <C-w><
+
 " tn で新しいタブを開く。移動はgt
 nnoremap <silent>tn :<C-u>:tabnew<CR>
 
@@ -349,17 +347,11 @@ map <F4> <ESC>:Kwbd<CR>
 nnoremap j gj
 nnoremap k gk
 
-""""" buftabs
-" バッファタブにパスを省略してファイル名のみ表示する
-let g:buftabs_only_basename=1
-" バッファタブをステータスライン内に表示する
-let g:buftabs_in_statusline=1
-" 現在のバッファをハイライト
-let g:buftabs_active_highlight_group="Visual"
-" ステータスライン
-set statusline=%=\ [%{(&fenc!=''?&fenc:&enc)}/%{&ff}]\[%Y]\[%04l,%04v][%p%%]
-" ステータスラインを常に表示
-set laststatus=2
+" diffsplitをverticalで
+set diffopt=vertical
+
+" ステータスバーに文字コードと改行コードを表示する
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
 
 
@@ -369,15 +361,12 @@ set laststatus=2
 
 
 
-
-
-
-"""""" Ctrl+p でそのまま実行
-"function! s:Exec()
-"    exe "!" . &ft . " %"
-":endfunction
-"command! Exec call <SID>Exec()
-"map <silent> <C-P> :call <SID>Exec()<CR>
+""""" Ctrl+p でそのまま実行
+function! s:Exec()
+    exe "!" . &ft . " %"
+:endfunction
+command! Exec call <SID>Exec()
+map <silent> <C-P> :call <SID>Exec()<CR>
 
 """""" バッファを閉じる時にウインドウ分割を保持する
 ":com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
