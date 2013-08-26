@@ -32,6 +32,21 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'git://github.com/Shougo/neocomplcache.git'
 " neocomplcacheを有効にする
 let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+  let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 "" 辞書補完
 "let g:neocomplcache_dictionary_filetype_lists = {
@@ -49,6 +64,16 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript,coffee setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 
 " neocomplcache
@@ -242,8 +267,8 @@ NeoBundle 'desert256.vim'
 " ir_black
 NeoBundle 'git://github.com/wgibbs/vim-irblack.git'
 
-" ステータスラインをちょろっとする
-NeoBundle 'git://github.com/Lokaltog/vim-powerline.git'
+" ステータスラインを見やすく変更
+NeoBundle 'git://github.com/itchyny/lightline.vim'
 " ステータスラインを常に表示
 set laststatus=2
 
@@ -328,7 +353,10 @@ autocmd FileType php setlocal tabstop=4 shiftwidth=4
 """"" python
 autocmd FileType python setlocal autoindent
 autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal expandtab tabstop=8 shiftwidth=4 softtabstop=4
+""""" ruby
+autocmd FileType ruby setlocal autoindent
+autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " html、gfでのファイル移動
 autocmd FileType html setlocal tabstop=2 shiftwidth=2
@@ -368,31 +396,8 @@ function! s:Exec()
 command! Exec call <SID>Exec()
 map <silent> <C-P> :call <SID>Exec()<CR>
 
-"""""" バッファを閉じる時にウインドウ分割を保持する
+"""""" バッファを閉じる時にウインドウ分割を保持する（上手く動かない？）
 ":com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
-
-
-
-"""""" unite.vim関連
-"" 初期設定関数を起動する
-"au FileType unite call s:unite_my_settings()
-"function! s:unite_my_settings()
-"  " Overwrite settings.
-"endfunction
-"" 様々なショートカット
-"call unite#set_substitute_pattern('file', '\$\w\+', '\=eval(submatch(0))', 200)
-"call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/"', 2)
-"call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
-"call unite#set_substitute_pattern('file', '^;r', '\=$VIMRUNTIME."/"')
-"call unite#set_substitute_pattern('file', '^\~', escape($HOME, '\'), -2)
-"call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
-"call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
-"if has('win32') || has('win64')
-"  call unite#set_substitute_pattern('file', '^;p', 'C:/Program Files/')
-"  call unite#set_substitute_pattern('file', '^;v', '~/vimfiles/')
-"else
-"  call unite#set_substitute_pattern('file', '^;v', '~/.vim/')
-"endif
 
 
 
